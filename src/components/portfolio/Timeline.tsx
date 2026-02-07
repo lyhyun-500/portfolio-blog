@@ -8,7 +8,7 @@ export function Timeline() {
     >
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-2xl font-bold tracking-tight text-stone-100">
-          3년간의 성장 및 역량
+          경력 및 성장
         </h2>
         <span className="text-xs font-medium uppercase tracking-wider text-stone-500">
           11페이지
@@ -30,8 +30,12 @@ export function Timeline() {
               <div className="flex-1 rounded-xl border border-stone-800 bg-stone-900/50 p-5">
                 <h3 className="font-semibold text-accent">{t.year}</h3>
                 <div className="mt-3 space-y-2">
-                  <p className="text-sm text-stone-500">배운 것: {t.learned.join(', ')}</p>
-                  <p className="text-sm text-stone-400">담당: {t.work.join(', ')}</p>
+                  {t.learned.length > 0 && (
+                    <p className="text-sm text-stone-500">배운 것: {t.learned.join(', ')}</p>
+                  )}
+                  {t.work.length > 0 && (
+                    <p className="text-sm text-stone-400">담당: {t.work.join(', ')}</p>
+                  )}
                   {t.achievement && (
                     <p className="text-sm font-medium text-stone-200">
                       성과: {t.achievement}

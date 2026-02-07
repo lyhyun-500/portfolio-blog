@@ -1,7 +1,7 @@
 import { executiveSummary } from '@/lib/portfolio-data'
 
 export function ExecutiveSummary() {
-  const { platform, myRole, tech } = executiveSummary
+  const { platform, experiences, myRole, tech } = executiveSummary
 
   return (
     <section
@@ -32,6 +32,23 @@ export function ExecutiveSummary() {
             <li className="pl-4">━ 시장: {platform.indicators.market}</li>
           </ul>
         </div>
+
+        {/* 회사 이력 */}
+        {experiences && experiences.length > 0 && (
+          <div>
+            <h3 className="mb-4 text-lg font-semibold text-accent">회사 이력</h3>
+            <ul className="space-y-3">
+              {experiences.map((exp, i) => (
+                <li key={i} className="flex flex-wrap items-baseline gap-2 text-stone-400">
+                  <span className="font-medium text-stone-300">{exp.company}</span>
+                  <span className="text-stone-500">·</span>
+                  <span>{exp.role}</span>
+                  <span className="text-stone-500">({exp.period})</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* 나의 역할 */}
         <div>

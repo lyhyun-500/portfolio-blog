@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { CaseStudyBlock } from '@/components/portfolio/CaseStudyBlock'
+import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
 
 export const metadata = {
   title: '구글 광고 유입 시도 | 포트폴리오',
@@ -14,54 +16,55 @@ export default function GoogleAdsPage() {
 
       <header className="mb-12">
         <span className="rounded-full bg-stone-700 px-2.5 py-0.5 text-xs font-medium text-stone-400">
-          실패
+          실패 → 피벗
         </span>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-stone-100">
-          실패 프로젝트: 구글 광고 유입 시도
+          케이스 스터디: 구글 광고 유입 시도
         </h1>
-        <p className="mt-2 text-stone-400">8페이지</p>
+        <p className="mt-2 text-stone-400">문제 → 시도 → 실패 원인 → 대안 · 배운 점</p>
       </header>
 
-      <div className="space-y-12 prose-custom">
-        <section>
-          <h2>시도한 배경</h2>
-          <ul>
-            <li>성인 콘텐츠 → 구글 광고 정책 위반</li>
-            <li>구글 광고 불가 → CAC 높음</li>
+      <div className="space-y-8">
+        <CaseStudyBlock label="문제">
+          <ul className="list-disc pl-5 space-y-1">
+            <li>성인 콘텐츠 → 구글 광고 정책 위반으로 광고 불가</li>
+            <li>CAC(고객 획득 비용) 높음, 경쟁사도 동일 이슈</li>
           </ul>
-        </section>
+        </CaseStudyBlock>
 
-        <section>
-          <h2>기획 시도: 랜딩 페이지 우회</h2>
-          <ul>
-            <li>전략 1: 전연령 작품만 광고에 노출</li>
+        <CaseStudyBlock label="시도">
+          <ul className="list-disc pl-5 space-y-1">
+            <li>전략 1: 전연령 작품만 광고에 노출, 가입 후 연령 인증</li>
             <li>전략 2: 선정적 소재 배제, &quot;로맨스 웹툰&quot; 등 중립 문구</li>
           </ul>
-        </section>
+        </CaseStudyBlock>
 
-        <section>
-          <h2>실패 원인</h2>
-          <ul>
+        <CaseStudyBlock label="실패 원인">
+          <ul className="list-disc pl-5 space-y-1">
             <li>구글 정책팀 수동 검수 → 사이트 내부 확인 후 적발</li>
             <li>법적 리스크: 미성년자 유입, 기만 광고 소지</li>
             <li>경영진: &quot;꼼수로 성장하지 말자&quot;</li>
           </ul>
-        </section>
+        </CaseStudyBlock>
 
-        <section>
-          <h2>대안 전환</h2>
+        <ChartPlaceholder
+          title="유입 채널 전환 (Before: 구글 시도 / After: 대안 채널)"
+          description="채널별 유입 비중 또는 CAC 비교"
+          aspect="wide"
+        />
+
+        <CaseStudyBlock label="대안 전환">
           <p>네이버/카카오 집중, 인플루언서 마케팅, SEO, 자체 커뮤니티 강화</p>
-        </section>
+        </CaseStudyBlock>
 
-        <section>
-          <h2>배운 점</h2>
-          <ul>
-            <li>✓ 플랫폼 정책 우회는 단기 해법, 장기적으론 독</li>
-            <li>✓ 제약 조건 내에서 창의성 발휘</li>
-            <li>✓ 실패도 포트폴리오: 시도와 피벗 능력 증명</li>
-            <li>✓ 법적/윤리적 경계선 판단 중요</li>
+        <CaseStudyBlock label="배운 점">
+          <ul className="list-disc pl-5 space-y-1">
+            <li>플랫폼 정책 우회는 단기 해법, 장기적으론 독</li>
+            <li>제약 조건 내에서 창의성 발휘</li>
+            <li>실패도 포트폴리오: 시도와 피벗 능력 증명</li>
+            <li>법적/윤리적 경계선 판단 중요</li>
           </ul>
-        </section>
+        </CaseStudyBlock>
       </div>
     </article>
   )

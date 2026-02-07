@@ -1,4 +1,5 @@
 import { growthMetrics } from '@/lib/portfolio-data'
+import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
 
 export function GrowthMetrics() {
   const { revenue, milestones } = growthMetrics
@@ -41,7 +42,18 @@ export function GrowthMetrics() {
               title="성장 추이"
             />
           </div>
+          <ChartPlaceholder
+            title="매출 성장 추이 차트 (우상향 그래프)"
+            description="Y축: 매출 비율 또는 금액, X축: Year 0~3. 실제 차트 이미지로 교체"
+            aspect="wide"
+          />
         </div>
+
+        <ChartPlaceholder
+          title="플랫폼 규모 확장 (작품 수 · MAU)"
+          description="작품 5천→3만, MAU 50만→300만 등 지표 시각화"
+          aspect="video"
+        />
 
         {/* 주요 마일스톤 */}
         <div>
