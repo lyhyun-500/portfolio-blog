@@ -27,6 +27,9 @@ export function GrowthMetrics() {
           <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-stone-500">
             일본 시장 월별 매출 성장 추이 (Index 단위)
           </p>
+          <p className="mb-3 sm:mb-4 text-xs text-stone-600 italic">
+            * Index: 2022년 6월을 1.0 기준으로 정규화한 상대 성장 지수
+          </p>
           <div className="rounded-lg border border-stone-800 bg-stone-950/50 p-3 sm:p-4">
             <MonthlyRevenueChart />
           </div>
@@ -38,7 +41,10 @@ export function GrowthMetrics() {
             연도별 매출 비교
           </h3>
           <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-stone-500">
-            2022년 대비 연도별 성장률 비교
+            2022년 대비 연도별 성장률 비교 (Index 단위)
+          </p>
+          <p className="mb-3 sm:mb-4 text-xs text-stone-600 italic">
+            * Index: 2022년 6월을 1.0 기준으로 정규화한 상대 성장 지수
           </p>
           <div className="rounded-lg border border-stone-800 bg-stone-950/50 p-3 sm:p-4">
             <YearlyRevenueChart />

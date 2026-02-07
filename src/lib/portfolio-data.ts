@@ -23,7 +23,7 @@ export const executiveSummary = {
     businessModel: '회차별 유료 결제 (소장/대여)',
     indicators: {
       dailyRevenue: '300만원 → 3,000만원 (1,000% 성장, 3년)',
-      annualTransaction: '연 거래액 Index 1 → 10 (대략)',
+      annualTransaction: '연 거래액 Index 1 → 10 (대략, 2022년 6월 기준 1.0으로 정규화한 상대 성장 지수)',
       works: '3만 작품',
       mau: '300만명',
       market: '한국 + 일본 (일본은 업계 루키급)',
