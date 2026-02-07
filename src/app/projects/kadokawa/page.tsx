@@ -20,7 +20,7 @@ export default function KadokawaPage() {
         <h1 className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-stone-100">
           일본 3대 출판사 카도카와 협업 · EPUB 뷰어 연동
         </h1>
-        <p className="mt-2 text-sm sm:text-base text-stone-400">2025.12 ~ 2026.11</p>
+        <p className="mt-2 text-sm sm:text-base text-stone-400">2025.12 ~ 2026.01</p>
       </header>
 
       <div className="space-y-6 sm:space-y-8">

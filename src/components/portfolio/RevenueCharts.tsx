@@ -61,13 +61,26 @@ export function MonthlyRevenueChart() {
           />
           <YAxis
             tick={{ fill: CHART_COLORS.text, fontSize: 9 }}
-            tickFormatter={(v) => `${v}억`}
+            tickFormatter={(v) => `Index ${v.toFixed(1)}`}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip
+            content={({ active, payload, label }) => {
+              if (!active || !payload?.length) return null
+              const d = payload[0].payload
+              return (
+                <div className="rounded-lg border border-stone-700 bg-stone-900 p-3 text-xs shadow-lg">
+                  <p className="mb-2 font-semibold text-stone-300">{label}</p>
+                  <p style={{ color: payload[0].color }} className="font-medium">
+                    Index: <span className="font-bold">{d.revenue_index.toFixed(2)}</span>
+                  </p>
+                </div>
+              )
+            }}
+          />
           <Area
             type="monotone"
-            dataKey="revenue_억"
-            name="월 매출(억)"
+            dataKey="revenue_index"
+            name="월 매출(Index)"
             stroke={CHART_COLORS.primary}
             fill="url(#revenueGradient)"
             strokeWidth={2}
@@ -94,7 +107,7 @@ export function YearlyRevenueChart() {
           />
           <YAxis
             tick={{ fill: CHART_COLORS.text, fontSize: 9 }}
-            tickFormatter={(v) => `${(v / 1e9).toFixed(0)}B`}
+            tickFormatter={(v) => `Index ${v.toFixed(1)}`}
           />
           <Tooltip
             content={({ active, payload }) => {
@@ -104,13 +117,13 @@ export function YearlyRevenueChart() {
                 <div className="rounded-lg border border-stone-700 bg-stone-900 p-3 text-xs shadow-lg">
                   <p className="mb-2 font-bold text-stone-100">{d.year}년</p>
                   <p style={{ color: CHART_COLORS.primary }} className="font-medium">
-                    매출: <span className="font-bold">¥{(d.revenue / 1e8).toFixed(0)}억</span>
+                    Index: <span className="font-bold">{d.revenue_index.toFixed(2)}</span>
                   </p>
                 </div>
               )
             }}
           />
-          <Bar dataKey="revenue" name="연 매출" radius={[6, 6, 0, 0]}>
+          <Bar dataKey="revenue_index" name="연 매출(Index)" radius={[6, 6, 0, 0]}>
             {yearlyRevenueData.map((_, i) => (
               <Cell key={i} fill={yearColors[i]} />
             ))}

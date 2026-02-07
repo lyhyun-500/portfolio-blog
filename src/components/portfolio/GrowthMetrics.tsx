@@ -25,7 +25,7 @@ export function GrowthMetrics() {
             월별 매출 추이 (2022.06 ~ 2026.01)
           </h3>
           <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-stone-500">
-            일본 시장 월별 매출 성장 추이 (억 원 단위)
+            일본 시장 월별 매출 성장 추이 (Index 단위)
           </p>
           <div className="rounded-lg border border-stone-800 bg-stone-950/50 p-3 sm:p-4">
             <MonthlyRevenueChart />

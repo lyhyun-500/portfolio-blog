@@ -46,11 +46,18 @@ export const monthlyRevenueData = [
   { label: '2025-11', revenue: 776638500 },
   { label: '2025-12', revenue: 809627500 },
   { label: '2026-01', revenue: 768762500 },
-].map((d) => ({
-  ...d,
-  shortLabel: `${d.label.slice(2, 4)}.${d.label.slice(5)}`,
-  revenue_억: Math.round(d.revenue / 1e8),
-}))
+].map((d, i, arr) => {
+  const firstRevenue = arr[0].revenue
+  const lastRevenue = arr[arr.length - 1].revenue
+  // 첫 값을 Index 1, 마지막 값을 Index 10으로 변환
+  const index = i === 0 ? 1 : i === arr.length - 1 ? 10 : 1 + ((d.revenue - firstRevenue) / (lastRevenue - firstRevenue)) * 9
+  return {
+    ...d,
+    shortLabel: `${d.label.slice(2, 4)}.${d.label.slice(5)}`,
+    revenue_억: Math.round(d.revenue / 1e8),
+    revenue_index: +(index.toFixed(2)),
+  }
+})
 
 // 연도별 매출 데이터
 export const yearlyRevenueData = [
@@ -58,11 +65,18 @@ export const yearlyRevenueData = [
   { year: 2023, revenue: 5866668755 },
   { year: 2024, revenue: 13202299000 },
   { year: 2025, revenue: 11180871500 },
-].map((d) => ({
-  ...d,
-  revenue_억: Math.round(d.revenue / 1e8),
-  revenue_B: (d.revenue / 1e9).toFixed(1),
-}))
+].map((d, i, arr) => {
+  const firstRevenue = arr[0].revenue
+  const lastRevenue = arr[arr.length - 1].revenue
+  // 첫 값을 Index 1, 마지막 값을 Index 10으로 변환
+  const index = i === 0 ? 1 : i === arr.length - 1 ? 10 : 1 + ((d.revenue - firstRevenue) / (lastRevenue - firstRevenue)) * 9
+  return {
+    ...d,
+    revenue_억: Math.round(d.revenue / 1e8),
+    revenue_B: (d.revenue / 1e9).toFixed(1),
+    revenue_index: +(index.toFixed(2)),
+  }
+})
 
 // 첫결율 데이터 (2023-03 ~ 2026-01)
 export const firstPaymentRateData = [
