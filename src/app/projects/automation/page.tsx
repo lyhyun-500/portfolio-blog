@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { CaseStudyBlock } from '@/components/portfolio/CaseStudyBlock'
-import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
 
 export const metadata = {
   title: '작품 업로드 자동화 | 포트폴리오',
@@ -47,17 +46,6 @@ export default function AutomationPage() {
             <li>엑셀 + 이미지 매칭 → DB INSERT, 오류 로그 자동 생성</li>
           </ul>
         </CaseStudyBlock>
-
-        <ChartPlaceholder
-          title="Before / After 업로드 시간"
-          description="2달 → 2시간 (96% 단축) 시각화"
-          aspect="wide"
-        />
-        <ChartPlaceholder
-          title="프로세스 플로우 또는 스크립트/데모 스크린샷"
-          description="자동화 전후 프로세스 다이어그램"
-          aspect="video"
-        />
 
         <CaseStudyBlock label="결과 (숫자·임팩트)" accent>
           <ul className="space-y-2">

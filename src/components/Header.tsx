@@ -8,9 +8,9 @@ const navItems = [
   { href: '/#executive', label: '요약' },
   { href: '/#differentiators', label: '차별화' },
   { href: '/#projects', label: '프로젝트' },
+  { href: '/personal', label: '개인 프로젝트' },
   { href: '/#data', label: '데이터' },
   { href: '/#timeline', label: '성장' },
-  { href: '/blog', label: '블로그' },
   { href: '/about', label: '소개' },
 ]
 

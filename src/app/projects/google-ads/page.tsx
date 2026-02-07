@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { CaseStudyBlock } from '@/components/portfolio/CaseStudyBlock'
-import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
 
 export const metadata = {
   title: '구글 광고 유입 시도 | 포트폴리오',
@@ -46,12 +45,6 @@ export default function GoogleAdsPage() {
             <li>경영진: &quot;꼼수로 성장하지 말자&quot;</li>
           </ul>
         </CaseStudyBlock>
-
-        <ChartPlaceholder
-          title="유입 채널 전환 (Before: 구글 시도 / After: 대안 채널)"
-          description="채널별 유입 비중 또는 CAC 비교"
-          aspect="wide"
-        />
 
         <CaseStudyBlock label="대안 전환">
           <p>네이버/카카오 집중, 인플루언서 마케팅, SEO, 자체 커뮤니티 강화</p>

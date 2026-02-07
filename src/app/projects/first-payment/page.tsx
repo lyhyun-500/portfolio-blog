@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { CaseStudyBlock } from '@/components/portfolio/CaseStudyBlock'
-import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
 
 export const metadata = {
   title: '첫 결제율 100% 개선 | 포트폴리오',
@@ -47,17 +46,6 @@ export default function FirstPaymentPage() {
           </ul>
         </CaseStudyBlock>
 
-        <ChartPlaceholder
-          title="Before / After 첫 결제율 차트"
-          description="5% → 10% 개선, 고관여 세그먼트 15% → 28% 등 지표 시각화"
-          aspect="wide"
-        />
-        <ChartPlaceholder
-          title="Funnel: 방문 → 가입 → 첫 결제"
-          description="전환 퍼널 그래프"
-          aspect="video"
-        />
-
         <CaseStudyBlock label="성과 (숫자·임팩트)" accent>
           <ul className="space-y-2">
             <li><strong>첫 결제율:</strong> 5% → 10% (100% 개선)</li>
@@ -82,11 +70,6 @@ export default function FirstPaymentPage() {
 FROM user_behavior WHERE signup_date >= '2023-01-01' GROUP BY user_segment;`}</code>
           </pre>
         </div>
-        <ChartPlaceholder
-          title="SQL 결과 또는 대시보드 스크린샷"
-          description="실제 쿼리 결과/Tableau 스크린샷"
-          aspect="video"
-        />
       </div>
     </article>
   )

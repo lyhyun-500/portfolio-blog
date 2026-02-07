@@ -1,5 +1,3 @@
-import { ChartPlaceholder } from '@/components/portfolio/ChartPlaceholder'
-
 export function DataAnalysis() {
   return (
     <section
@@ -38,11 +36,6 @@ WHERE payment_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)
 GROUP BY country, DATE(payment_date)
 ORDER BY date DESC;`}</code>
           </pre>
-          <ChartPlaceholder
-            title="SQL 결과 또는 Tableau 대시보드 스크린샷"
-            description="매출 모니터링, 세그먼트별 전환율 등"
-            aspect="video"
-          />
         </div>
 
         <div>

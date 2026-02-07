@@ -16,10 +16,25 @@ const projects = [
     color: 'accent' as const,
   },
   {
+    slug: 'kadokawa',
+    title: '일본 카도카와 협업 · EPUB 뷰어 연동',
+    description: '일본 3대 출판사 카도카와 요구사항 대응, 소설·사진집 출판 계약 확보',
+    type: '성공',
+    color: 'accent' as const,
+  },
+  {
     slug: 'google-ads',
     title: '구글 광고 유입 시도',
     description: '정책 위반으로 실패 → 대안 전략으로 전환, 실패에서 배운 교훈',
     type: '실패',
+    color: 'stone' as const,
+  },
+  {
+    slug: 'personal',
+    href: '/personal',
+    title: '개인 프로젝트',
+    description: '설계·고민 정리. 준비 중이어도 생각을 쌓아두는 공간',
+    type: '준비 중',
     color: 'stone' as const,
   },
 ]
@@ -43,7 +58,7 @@ export function ProjectCards() {
         {projects.map((p) => (
           <Link
             key={p.slug}
-            href={`/projects/${p.slug}`}
+            href={p.href ?? `/projects/${p.slug}`}
             className="group block overflow-hidden rounded-2xl border border-stone-800 bg-stone-900/50 p-6 transition-all hover:border-stone-600 hover:bg-stone-800/50"
           >
             <span
