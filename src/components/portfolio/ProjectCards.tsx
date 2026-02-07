@@ -23,6 +23,13 @@ const projects = [
     color: 'accent' as const,
   },
   {
+    slug: 'worldcup',
+    title: '이상형 월드컵 기능',
+    description: '체류시간 2분 증가, 고정 회원 매일 1만명 확보. 캐릭터 매칭·리워드 시스템',
+    type: '성공',
+    color: 'accent' as const,
+  },
+  {
     slug: 'google-ads',
     title: '구글 광고 유입 시도',
     description: '정책 위반으로 실패 → 대안 전략으로 전환, 실패에서 배운 교훈',
@@ -43,10 +50,10 @@ export function ProjectCards() {
   return (
     <section
       id="projects"
-      className="rounded-3xl border border-stone-800 bg-stone-900/30 p-8 sm:p-10"
+      className="rounded-2xl sm:rounded-3xl border border-stone-800 bg-stone-900/30 p-4 sm:p-6 md:p-8 lg:p-10"
     >
-      <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-2xl font-bold tracking-tight text-stone-100">
+      <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-stone-100">
           핵심 프로젝트
         </h2>
         <span className="text-xs font-medium uppercase tracking-wider text-stone-500">
@@ -54,15 +61,15 @@ export function ProjectCards() {
         </span>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
           <Link
             key={p.slug}
             href={p.href ?? `/projects/${p.slug}`}
-            className="group block overflow-hidden rounded-2xl border border-stone-800 bg-stone-900/50 p-6 transition-all hover:border-stone-600 hover:bg-stone-800/50"
+            className="group block overflow-hidden rounded-xl sm:rounded-2xl border border-stone-800 bg-stone-900/50 p-4 sm:p-6 transition-all hover:border-stone-600 hover:bg-stone-800/50"
           >
             <span
-              className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${
+              className={`inline-block rounded-full px-2 py-0.5 sm:px-2.5 text-xs font-medium ${
                 p.type === '성공'
                   ? 'bg-accent/20 text-accent'
                   : 'bg-stone-700 text-stone-400'
@@ -70,13 +77,13 @@ export function ProjectCards() {
             >
               {p.type}
             </span>
-            <h3 className="mt-3 text-lg font-semibold text-stone-100 group-hover:text-accent">
+            <h3 className="mt-2 sm:mt-3 text-base sm:text-lg font-semibold text-stone-100 group-hover:text-accent">
               {p.title}
             </h3>
-            <p className="mt-2 text-sm text-stone-400 line-clamp-2">
+            <p className="mt-2 text-xs sm:text-sm text-stone-400 line-clamp-2 sm:line-clamp-2">
               {p.description}
             </p>
-            <span className="mt-3 inline-block text-sm font-medium text-accent">
+            <span className="mt-2 sm:mt-3 inline-block text-xs sm:text-sm font-medium text-accent">
               상세 보기 →
             </span>
           </Link>

@@ -8,22 +8,22 @@ export const metadata = {
 
 export default function KadokawaPage() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href="/#projects" className="mb-8 inline-block text-sm text-stone-500 hover:text-accent">
+    <article className="mx-auto max-w-3xl px-3 py-8 sm:px-4 sm:py-12 md:px-6">
+      <Link href="/#projects" className="mb-6 sm:mb-8 inline-block text-xs sm:text-sm text-stone-500 hover:text-accent">
         ← 프로젝트 목록
       </Link>
 
-      <header className="mb-12">
+      <header className="mb-8 sm:mb-12">
         <span className="rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-medium text-accent">
           성공
         </span>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-stone-100">
+        <h1 className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-stone-100">
           일본 3대 출판사 카도카와 협업 · EPUB 뷰어 연동
         </h1>
-        <p className="mt-2 text-stone-400">2025.12 ~ 2026.11</p>
+        <p className="mt-2 text-sm sm:text-base text-stone-400">2025.12 ~ 2026.11</p>
       </header>
 
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <CaseStudyBlock label="배경">
           <p>일본 3대 출판사 중 하나인 카도카와와의 협업. 요구사항에 맞춘 EPUB 뷰어 기능 연동 및 일본 출판 표준화 작업 참여.</p>
         </CaseStudyBlock>

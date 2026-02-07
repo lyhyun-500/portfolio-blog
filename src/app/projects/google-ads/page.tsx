@@ -8,22 +8,22 @@ export const metadata = {
 
 export default function GoogleAdsPage() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href="/#projects" className="mb-8 inline-block text-sm text-stone-500 hover:text-accent">
+    <article className="mx-auto max-w-3xl px-3 py-8 sm:px-4 sm:py-12 md:px-6">
+      <Link href="/#projects" className="mb-6 sm:mb-8 inline-block text-xs sm:text-sm text-stone-500 hover:text-accent">
         ← 프로젝트 목록
       </Link>
 
-      <header className="mb-12">
+      <header className="mb-8 sm:mb-12">
         <span className="rounded-full bg-stone-700 px-2.5 py-0.5 text-xs font-medium text-stone-400">
           실패 → 피벗
         </span>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-stone-100">
+        <h1 className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-stone-100">
           케이스 스터디: 구글 광고 유입 시도
         </h1>
-        <p className="mt-2 text-stone-400">문제 → 시도 → 실패 원인 → 대안 · 배운 점</p>
+        <p className="mt-2 text-sm sm:text-base text-stone-400">문제 → 시도 → 실패 원인 → 대안 · 배운 점</p>
       </header>
 
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <CaseStudyBlock label="문제">
           <ul className="list-disc pl-5 space-y-1">
             <li>성인 콘텐츠 → 구글 광고 정책 위반으로 광고 불가</li>

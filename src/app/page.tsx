@@ -9,28 +9,28 @@ import { Timeline } from '@/components/portfolio/Timeline'
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div className="mx-auto max-w-6xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-12 lg:px-8">
       <Hero />
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+      <div className="mt-6 sm:mt-8 grid gap-6 sm:gap-8 lg:grid-cols-2">
         <ExecutiveSummary />
         <Differentiators />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         <GrowthMetrics />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         <ProjectCards />
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+      <div className="mt-6 sm:mt-8 grid gap-6 sm:gap-8 lg:grid-cols-2">
         <DataAnalysis />
         <GlobalExperience />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         <Timeline />
       </div>
     </div>

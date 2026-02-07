@@ -16,7 +16,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* 헤더 높이만큼 앵커 스크롤 시 여백 */
+  scroll-padding-top: 3.5rem; /* 모바일 헤더 높이 (h-14) */
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 4rem; /* 데스크탑 헤더 높이 (h-16) */
+  }
 }
 
 body {
@@ -36,22 +42,22 @@ a.anchor {
 
 /* 포스트 본문 스타일 */
 .prose-custom h2 {
-  @apply mt-10 mb-4 text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2;
+  @apply mt-6 sm:mt-10 mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2;
 }
 .prose-custom h3 {
-  @apply mt-6 mb-3 text-lg font-medium text-stone-200;
+  @apply mt-4 sm:mt-6 mb-2 sm:mb-3 text-base sm:text-lg font-medium text-stone-200;
 }
 .prose-custom p {
-  @apply mb-4 text-stone-300 leading-relaxed;
+  @apply mb-3 sm:mb-4 text-sm sm:text-base text-stone-300 leading-relaxed;
 }
 .prose-custom ul, .prose-custom ol {
-  @apply mb-4 pl-6 text-stone-300;
+  @apply mb-3 sm:mb-4 pl-5 sm:pl-6 text-sm sm:text-base text-stone-300;
 }
 .prose-custom code {
-  @apply px-1.5 py-0.5 rounded bg-stone-800 text-accent text-sm;
+  @apply px-1.5 py-0.5 rounded bg-stone-800 text-accent text-xs sm:text-sm;
 }
 .prose-custom pre {
-  @apply p-4 rounded-lg bg-stone-900 overflow-x-auto mb-4;
+  @apply p-3 sm:p-4 rounded-lg bg-stone-900 overflow-x-auto mb-3 sm:mb-4;
 }
 .prose-custom pre code {
   @apply bg-transparent p-0 text-stone-300;

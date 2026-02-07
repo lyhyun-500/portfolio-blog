@@ -6,10 +6,10 @@ export function ExecutiveSummary() {
   return (
     <section
       id="executive"
-      className="rounded-3xl border border-stone-800 bg-stone-900/30 p-8 sm:p-10"
+      className="rounded-2xl sm:rounded-3xl border border-stone-800 bg-stone-900/30 p-4 sm:p-6 md:p-8 lg:p-10"
     >
-      <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-2xl font-bold tracking-tight text-stone-100">
+      <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-stone-100">
           Executive Summary
         </h2>
         <span className="text-xs font-medium uppercase tracking-wider text-stone-500">
@@ -17,11 +17,11 @@ export function ExecutiveSummary() {
         </span>
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-6 sm:space-y-8 md:space-y-10">
         {/* 플랫폼 개요 */}
         <div>
-          <h3 className="mb-4 text-lg font-semibold text-accent">플랫폼 개요</h3>
-          <ul className="space-y-2 text-stone-400">
+          <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-accent">플랫폼 개요</h3>
+          <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-stone-400">
             <li><span className="text-stone-500">유형:</span> {platform.type}</li>
             <li><span className="text-stone-500">비즈니스 모델:</span> {platform.businessModel}</li>
             <li className="pt-2 font-medium text-stone-300">주요 지표:</li>
@@ -36,10 +36,10 @@ export function ExecutiveSummary() {
         {/* 회사 이력 */}
         {experiences && experiences.length > 0 && (
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-accent">회사 이력</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-accent">회사 이력</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {experiences.map((exp, i) => (
-                <li key={i} className="flex flex-wrap items-baseline gap-2 text-stone-400">
+                <li key={i} className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline gap-1 sm:gap-2 text-sm sm:text-base text-stone-400">
                   <span className="font-medium text-stone-300">{exp.company}</span>
                   <span className="text-stone-500">·</span>
                   <span>{exp.role}</span>
@@ -52,8 +52,8 @@ export function ExecutiveSummary() {
 
         {/* 나의 역할 */}
         <div>
-          <h3 className="mb-4 text-lg font-semibold text-accent">나의 역할 ({myRole.period})</h3>
-          <ul className="space-y-2 text-stone-400">
+          <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-accent">나의 역할 ({myRole.period})</h3>
+          <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-stone-400">
             <li><span className="text-stone-500">직급:</span> {myRole.career}</li>
             <li><span className="text-stone-500">직무:</span> {myRole.job}</li>
             <li className="pt-2 font-medium text-stone-300">핵심 성과:</li>
@@ -65,10 +65,10 @@ export function ExecutiveSummary() {
 
         {/* 사용 기술 */}
         <div>
-          <h3 className="mb-4 text-lg font-semibold text-accent">사용 기술</h3>
+          <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-accent">사용 기술</h3>
           <div className="flex flex-wrap gap-2">
             {tech.data.map((t) => (
-              <span key={t} className="rounded-lg bg-stone-800 px-3 py-1 text-sm text-stone-400">
+              <span key={t} className="rounded-lg bg-stone-800 px-2.5 sm:px-3 py-1 text-xs sm:text-sm text-stone-400">
                 {t}
               </span>
             ))}

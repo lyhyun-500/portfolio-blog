@@ -8,11 +8,11 @@ interface CaseStudyBlockProps {
 
 export function CaseStudyBlock({ label, children, accent }: CaseStudyBlockProps) {
   return (
-    <div className={`rounded-xl border p-5 ${accent ? 'border-accent/40 bg-accent/5' : 'border-stone-800 bg-stone-900/30'}`}>
-      <p className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2">
+    <div className={`rounded-lg sm:rounded-xl border p-3 sm:p-4 md:p-5 ${accent ? 'border-accent/40 bg-accent/5' : 'border-stone-800 bg-stone-900/30'}`}>
+      <p className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2 sm:mb-3">
         {label}
       </p>
-      <div className="text-stone-300">{children}</div>
+      <div className="text-sm sm:text-base text-stone-300">{children}</div>
     </div>
   )
 }
