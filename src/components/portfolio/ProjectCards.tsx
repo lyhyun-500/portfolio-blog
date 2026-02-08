@@ -30,6 +30,20 @@ const projects = [
     color: 'accent' as const,
   },
   {
+    slug: 'pg-offerwall',
+    title: 'PG 연동 및 오퍼월 연동',
+    description: 'GMO PG 연동, PAYPAY 연동(사이트 연 매출 60% 비중), 자동 결제 도입(월 매출 10% 비중)',
+    type: '성공',
+    color: 'accent' as const,
+  },
+  {
+    slug: 'attendance',
+    title: '출석체크 기능 추가',
+    description: '룰렛 출석체크로 하루 평균 3만명 고정 회원 확보, 체류시간 및 재방문율 상승',
+    type: '성공',
+    color: 'accent' as const,
+  },
+  {
     slug: 'google-ads',
     title: '구글 광고 유입 시도',
     description: '정책 위반으로 실패 → 대안 전략으로 전환, 실패에서 배운 교훈',
