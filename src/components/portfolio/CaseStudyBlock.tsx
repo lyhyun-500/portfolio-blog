@@ -12,7 +12,7 @@ export function CaseStudyBlock({ label, children, accent }: CaseStudyBlockProps)
       <p className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2 sm:mb-3">
         {label}
       </p>
-      <div className="text-sm sm:text-base text-stone-300">{children}</div>
+      <div className="case-study-content text-sm sm:text-base text-stone-300 whitespace-pre-line">{children}</div>
     </div>
   )
 }

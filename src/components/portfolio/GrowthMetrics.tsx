@@ -70,7 +70,7 @@ export function GrowthMetrics() {
           <div className="space-y-3 sm:space-y-4">
             {revenue.map((r, i) => (
               <div key={i} className="flex flex-col gap-1.5 sm:gap-2 sm:flex-row sm:items-center">
-                <span className="w-full sm:w-40 shrink-0 text-xs sm:text-sm font-medium text-stone-500">
+                <span className="w-full sm:w-48 shrink-0 text-xs sm:text-sm font-medium text-stone-500 whitespace-nowrap">
                   {r.year}
                 </span>
                 <span className="text-sm sm:text-base text-stone-300">{r.value}</span>

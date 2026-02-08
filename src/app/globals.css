@@ -50,6 +50,11 @@ a.anchor {
 .prose-custom p {
   @apply mb-3 sm:mb-4 text-sm sm:text-base text-stone-300 leading-relaxed;
 }
+/* 마침표로 끝나는 문장 뒤 줄바꿈 */
+.case-study-content,
+.prose-custom {
+  white-space: pre-line;
+}
 .prose-custom ul, .prose-custom ol {
   @apply mb-3 sm:mb-4 pl-5 sm:pl-6 text-sm sm:text-base text-stone-300;
 }

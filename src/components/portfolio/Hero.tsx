@@ -44,7 +44,7 @@ export function Hero() {
             href="#timeline"
             className="rounded-lg sm:rounded-xl border border-stone-600 px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-medium text-stone-400 transition-colors hover:border-stone-500 hover:text-stone-100"
           >
-            3년 성장
+            5년 성장
           </Link>
         </div>
       </div>

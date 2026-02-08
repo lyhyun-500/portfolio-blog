@@ -34,11 +34,28 @@ export function GlobalExperience() {
         </div>
 
         <div>
-          <h3 className="mb-2 sm:mb-3 text-base sm:text-lg font-semibold text-accent">배운 점</h3>
-          <p className="text-sm sm:text-base text-stone-400 leading-relaxed">
-            글로벌 시장은 단순 번역이 아님. 문화, 결제, UX 모두 현지화 필수.
-            후발주자는 차별화 전략 필수. 사업 판단은 데이터만으로 안 됨.
-          </p>
+          <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-accent">배운 점</h3>
+          <div className="space-y-4 sm:space-y-5">
+            <div className="rounded-lg border border-stone-800 bg-stone-900/50 p-3 sm:p-4">
+              <h4 className="mb-2 text-sm sm:text-base font-semibold text-stone-200">
+                &quot;세그먼트를 나누면 다른 문제가 보인다.&quot;
+              </h4>
+              <p className="text-xs sm:text-sm text-stone-400 leading-relaxed">
+                일본 유저를 단일 집단으로 보면 첫결제율 6~7%로 평범하지만, 가입 경로·첫 열람 장르·경과일수로 쪼개면 2%~15%까지 갈렸다. 
+                이 발견이 세그먼트별 프로모션 타이밍 차등화의 근거가 됐다.
+              </p>
+            </div>
+            <div className="rounded-lg border border-stone-800 bg-stone-900/50 p-3 sm:p-4">
+              <h4 className="mb-2 text-sm sm:text-base font-semibold text-stone-200">
+                &quot;변수 하나가 특정 세그먼트만 흔든다.&quot;
+              </h4>
+              <p className="text-xs sm:text-sm text-stone-400 leading-relaxed">
+                결제 후 지급되는 리워드 변경 시 전체 수치는 미미했지만, 특정 결제는 재결제자에 대한 세그먼트 수치만 바꿨다. 
+                전체 평균만 봤으면 &quot;효과 없음&quot;으로 판단할 뻔했다. 
+                이후 모든 기능 출시 때 세그먼트별 영향도를 먼저 확인하는 원칙이 생겼다.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

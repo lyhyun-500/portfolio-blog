@@ -29,17 +29,24 @@ export function Timeline() {
               </div>
               <div className="flex-1 rounded-lg sm:rounded-xl border border-stone-800 bg-stone-900/50 p-4 sm:p-5">
                 <h3 className="text-sm sm:text-base font-semibold text-accent">{t.year}</h3>
-                <div className="mt-2 sm:mt-3 space-y-1.5 sm:space-y-2">
-                  {t.learned.length > 0 && (
-                    <p className="text-xs sm:text-sm text-stone-500">배운 것: {t.learned.join(', ')}</p>
+                <div className="mt-2 sm:mt-3 space-y-2 sm:space-y-2.5">
+                  {t.problem && (
+                    <div>
+                      <p className="text-xs font-medium text-stone-500 mb-1">문제</p>
+                      <p className="text-xs sm:text-sm text-stone-400">{t.problem}</p>
+                    </div>
                   )}
-                  {t.work.length > 0 && (
-                    <p className="text-xs sm:text-sm text-stone-400">담당: {t.work.join(', ')}</p>
+                  {t.action && (
+                    <div>
+                      <p className="text-xs font-medium text-stone-500 mb-1">행동</p>
+                      <p className="text-xs sm:text-sm text-stone-300">{t.action}</p>
+                    </div>
                   )}
-                  {t.achievement && (
-                    <p className="text-xs sm:text-sm font-medium text-stone-200">
-                      성과: {t.achievement}
-                    </p>
+                  {t.result && (
+                    <div>
+                      <p className="text-xs font-medium text-accent mb-1">성과</p>
+                      <p className="text-xs sm:text-sm font-medium text-stone-200">{t.result}</p>
+                    </div>
                   )}
                 </div>
               </div>
