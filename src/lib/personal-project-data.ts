@@ -30,11 +30,27 @@ export interface ProductionConsiderationItem {
   impact: '높음' | '중간' | '낮음'
 }
 
-export const personalProject = {
-  status: '구현 완료',
-  intro: '포트폴리오 블로그에 적용한 모듈 레이아웃 시스템입니다. 실제로 작동하는 시스템으로 구현되었습니다.',
+export interface PersonalProject {
+  id: string
+  title: string
+  status: '구현 완료' | '진행 중' | '준비 중'
+  intro: string
+  design?: DesignItem[]
+  implementations?: ImplementationItem[]
+  considerations?: ConsiderationItem[]
+  postManagement?: PostManagementItem[]
+  productionConsiderations?: ProductionConsiderationItem[]
+  adminLink?: string
+}
 
-  design: [
+export const personalProjects: PersonalProject[] = [
+  {
+    id: 'modular-layout-system',
+    title: 'Modular Page Layout System',
+    status: '구현 완료',
+    intro: '포트폴리오 블로그에 적용한 모듈 레이아웃 시스템입니다. 실제로 작동하는 시스템으로 구현되었습니다.',
+    adminLink: '/admin',
+    design: [
     {
       title: 'Modular Page Layout System',
       content: `페이지를 섹션 단위로 모듈(Part)로 나누고, 설정에 따라 각 섹션의 위치, 순서, 노출을 제어할 수 있는 시스템. 개발자 개입 없이 레이아웃 변경이 가능하도록 하여 운영 및 실험 속도를 개선하는 것이 목표.`,
@@ -187,4 +203,8 @@ export const personalProject = {
       ],
     },
   ] as ProductionConsiderationItem[],
-}
+  },
+]
+
+// 하위 호환성을 위한 기본 export (첫 번째 프로젝트)
+export const personalProject = personalProjects[0]
