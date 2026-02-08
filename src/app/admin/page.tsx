@@ -242,8 +242,8 @@ export default function AdminPage() {
           <ul className="space-y-1 text-sm text-stone-400">
             <li>• 위/아래 화살표 버튼으로 모듈 순서를 변경할 수 있습니다</li>
             <li>• 토글 스위치로 모듈의 표시/숨김을 제어할 수 있습니다</li>
-            <li>• "미리보기" 버튼으로 변경사항을 확인할 수 있습니다</li>
-            <li>• "저장" 버튼을 눌러야 변경사항이 메인 페이지에 적용됩니다</li>
+            <li>• &quot;미리보기&quot; 버튼으로 변경사항을 확인할 수 있습니다</li>
+            <li>• &quot;저장&quot; 버튼을 눌러야 변경사항이 메인 페이지에 적용됩니다</li>
             <li>• 설정은 브라우저 로컬스토리지에 저장됩니다</li>
           </ul>
         </div>
