@@ -13,6 +13,7 @@ const navItems = [
   { href: '/#data', label: '데이터' },
   { href: '/#timeline', label: '성장' },
   { href: '/about', label: '소개' },
+  { href: '/admin', label: '관리', admin: true },
 ]
 
 export function Header() {
@@ -31,17 +32,38 @@ export function Header() {
         
         {/* 데스크탑 네비게이션 */}
         <nav className="hidden md:flex items-center gap-2 lg:gap-4">
-          {navItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`shrink-0 rounded-lg px-2 py-2 text-xs lg:text-sm font-medium transition-colors lg:px-3 ${
-                pathname === href ? 'text-accent' : 'text-stone-400 hover:bg-stone-800/50 hover:text-stone-100'
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
+              {navItems.map(({ href, label, admin }) => {
+            // 관리자 링크는 클릭 시 인증 페이지로 리다이렉트
+            const handleAdminClick = (e: React.MouseEvent) => {
+              if (admin) {
+                e.preventDefault()
+                // 인증 여부 확인
+                const authenticated = sessionStorage.getItem('admin_authenticated')
+                if (authenticated === 'true') {
+                  window.location.href = '/admin'
+                } else {
+                  window.location.href = '/admin/auth'
+                }
+              }
+            }
+
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={handleAdminClick}
+                className={`shrink-0 rounded-lg px-2 py-2 text-xs lg:text-sm font-medium transition-colors lg:px-3 ${
+                  pathname === href
+                    ? 'text-accent'
+                    : admin
+                      ? 'text-stone-500 hover:bg-stone-800/50 hover:text-stone-300'
+                      : 'text-stone-400 hover:bg-stone-800/50 hover:text-stone-100'
+                }`}
+              >
+                {label}
+              </Link>
+            )
+          })}
         </nav>
 
         {/* 모바일 햄버거 메뉴 */}
@@ -72,20 +94,39 @@ export function Header() {
       {mobileMenuOpen && (
         <nav className="md:hidden border-t border-stone-800 bg-[#0f0f11]">
           <div className="mx-auto max-w-6xl px-4 py-2 space-y-1">
-            {navItems.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  pathname === href
-                    ? 'text-accent bg-stone-800/50'
-                    : 'text-stone-400 hover:bg-stone-800/50 hover:text-stone-100'
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
+            {navItems.map(({ href, label, admin }) => {
+              const handleAdminClick = (e: React.MouseEvent) => {
+                if (admin) {
+                  e.preventDefault()
+                  setMobileMenuOpen(false)
+                  const authenticated = sessionStorage.getItem('admin_authenticated')
+                  if (authenticated === 'true') {
+                    window.location.href = '/admin'
+                  } else {
+                    window.location.href = '/admin/auth'
+                  }
+                } else {
+                  setMobileMenuOpen(false)
+                }
+              }
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={handleAdminClick}
+                  className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    pathname === href
+                      ? 'text-accent bg-stone-800/50'
+                      : admin
+                        ? 'text-stone-500 hover:bg-stone-800/50 hover:text-stone-300'
+                        : 'text-stone-400 hover:bg-stone-800/50 hover:text-stone-100'
+                  }`}
+                >
+                  {label}
+                </Link>
+              )
+            })}
           </div>
         </nav>
       )}

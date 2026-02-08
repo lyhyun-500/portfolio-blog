@@ -1,38 +1,36 @@
-import { Hero } from '@/components/portfolio/Hero'
-import { ExecutiveSummary } from '@/components/portfolio/ExecutiveSummary'
-import { Differentiators } from '@/components/portfolio/Differentiators'
-import { GrowthMetrics } from '@/components/portfolio/GrowthMetrics'
-import { ProjectCards } from '@/components/portfolio/ProjectCards'
-import { DataAnalysis } from '@/components/portfolio/DataAnalysis'
-import { GlobalExperience } from '@/components/portfolio/GlobalExperience'
-import { Timeline } from '@/components/portfolio/Timeline'
+'use client'
+
+import { LayoutEngine } from '@/components/layout/LayoutEngine'
+import { defaultLayoutConfig } from '@/lib/module-config'
+import { LayoutConfig } from '@/lib/module-types'
+import { useEffect, useState } from 'react'
 
 export default function HomePage() {
-  return (
-    <div className="mx-auto max-w-6xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-12 lg:px-8">
-      <Hero />
+  const [config, setConfig] = useState<LayoutConfig | undefined>(undefined)
 
-      <div className="mt-6 sm:mt-8 grid gap-6 sm:gap-8 lg:grid-cols-2">
-        <ExecutiveSummary />
-        <Differentiators />
-      </div>
+  // 로컬스토리지에서 저장된 설정 불러오기
+  useEffect(() => {
+    const saved = localStorage.getItem('portfolio-layout-config')
+    if (saved) {
+      try {
+        setConfig(JSON.parse(saved))
+      } catch (e) {
+        console.error('Failed to load config:', e)
+        setConfig(defaultLayoutConfig)
+      }
+    } else {
+      setConfig(defaultLayoutConfig)
+    }
+  }, [])
 
-      <div className="mt-6 sm:mt-8">
-        <GrowthMetrics />
+  // 설정이 로드될 때까지 로딩 표시
+  if (!config) {
+    return (
+      <div className="min-h-screen bg-[#0f0f11] flex items-center justify-center">
+        <p className="text-stone-400">로딩 중...</p>
       </div>
+    )
+  }
 
-      <div className="mt-6 sm:mt-8">
-        <ProjectCards />
-      </div>
-
-      <div className="mt-6 sm:mt-8 grid gap-6 sm:gap-8 lg:grid-cols-2">
-        <DataAnalysis />
-        <GlobalExperience />
-      </div>
-
-      <div className="mt-6 sm:mt-8">
-        <Timeline />
-      </div>
-    </div>
-  )
+  return <LayoutEngine config={config} />
 }
