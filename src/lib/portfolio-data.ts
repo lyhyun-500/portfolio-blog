@@ -46,7 +46,7 @@ export const executiveSummary = {
     ],
   },
   tech: {
-    data: ['MySQL (직접 쿼리)', 'Tableau', 'Python'],
+    data: ['MySQL', 'Tableau', 'Python'],
     collaboration: ['개발팀', '운영팀', '일본 현지 팀'],
   },
 }

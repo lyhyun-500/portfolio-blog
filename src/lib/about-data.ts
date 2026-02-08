@@ -26,7 +26,7 @@ export const about = {
   ],
 
   // 기술·도구 (간단)
-  tools: ['MySQL (직접 쿼리)', 'Tableau', 'Python', '엑셀·PRD·스펙 시트'],
+  tools: ['MySQL', 'Tableau', 'Python', '엑셀·PRD·스펙 시트'],
 
   // 연락처
   contact: {

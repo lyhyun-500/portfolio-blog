@@ -93,7 +93,12 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
             사후 관리 계획
           </h3>
           <ul className="space-y-4 sm:space-y-6">
-            {postManagement.map((pm, i) => (
+            {[...postManagement].sort((a, b) => {
+              const priorityOrder = { '높음': 0, '중간': 1, '낮음': 2 }
+              const aPriority = a.priority || '낮음'
+              const bPriority = b.priority || '낮음'
+              return (priorityOrder[aPriority as keyof typeof priorityOrder] || 2) - (priorityOrder[bPriority as keyof typeof priorityOrder] || 2)
+            }).map((pm, i) => (
               <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-sm sm:text-base font-medium text-accent">{pm.category}</h3>
@@ -129,7 +134,10 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
             실서비스 적용 시 고려사항
           </h3>
           <ul className="space-y-4 sm:space-y-6">
-            {productionConsiderations.map((pc, i) => (
+            {[...productionConsiderations].sort((a, b) => {
+              const impactOrder = { '높음': 0, '중간': 1, '낮음': 2 }
+              return (impactOrder[a.impact] || 2) - (impactOrder[b.impact] || 2)
+            }).map((pc, i) => (
               <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-sm sm:text-base font-semibold text-stone-200">{pc.title}</h3>
