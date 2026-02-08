@@ -28,7 +28,7 @@ export function GlobalExperience() {
           <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-stone-400">
             <li>• 우→좌 읽기 방향 전환 (일본 만화 관습)</li>
             <li>• 결제 방식: 편의점 결제 추가</li>
-            <li>• 장르 선호도: BL 비중 고려 큐레이션</li>
+            <li>• 회원별 열람한 작품에 대한 키워드 및 작품 장르 데이터 구조 설계를 위해 작품별 장르 AI로 추출</li>
             <li>• 한국 본사 기획 → 일본팀 피드백 반영</li>
           </ul>
         </div>

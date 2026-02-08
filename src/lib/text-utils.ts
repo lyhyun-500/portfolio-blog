@@ -1,11 +1,16 @@
-// 텍스트 유틸리티 함수
+/**
+ * 텍스트 처리 유틸리티 함수
+ */
 
 /**
- * 마침표로 끝나는 문장 뒤에 줄바꿈을 추가합니다.
- * @param text 원본 텍스트
- * @returns 줄바꿈이 추가된 텍스트
+ * 마침표(.) 뒤에 줄바꿈을 추가하는 함수
+ * 단, 숫자 뒤의 마침표(예: 3.14, 2024.01)는 제외
  */
 export function addLineBreakAfterPeriod(text: string): string {
-  // 마침표 뒤에 공백이 있으면 줄바꿈으로 변경, 없으면 줄바꿈 추가
-  return text.replace(/\.(\s+)/g, '.\n').replace(/\.([^\n])/g, '.\n$1')
+  if (!text || typeof text !== 'string') return text
+  
+  // 숫자 뒤의 마침표는 제외하고, 일반 마침표 뒤에 줄바꿈 추가
+  // 패턴: 숫자가 아닌 문자 뒤의 마침표 뒤에 줄바꿈
+  // 단, 이미 줄바꿈이 있는 경우는 제외
+  return text.replace(/([^0-9\n])\.(\s*)(?!\n)/g, '$1.\n$2')
 }

@@ -41,7 +41,7 @@ export const executiveSummary = {
     achievements: [
       '첫 결제율 5% → 10% (100% 개선)',
       '작품 업로드 프로세스 자동화 (2달 → 자동)',
-      'SQL 기반 데이터 분석 (주 수십 건 쿼리 작성)',
+      'SQL 기반 데이터 분석',
       'Tableau 활용 가능',
     ],
   },

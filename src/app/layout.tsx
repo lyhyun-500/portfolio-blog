@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AutoLineBreak } from '@/components/AutoLineBreak'
 
 export const metadata: Metadata = {
   title: '일본 웹툰 플랫폼 10배 성장 | Data-Driven PM 포트폴리오',
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang="ko">
       <body className="min-h-screen flex flex-col bg-[#0f0f11]" suppressHydrationWarning>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          {children}
+          <AutoLineBreak />
+        </main>
         <Footer />
       </body>
     </html>

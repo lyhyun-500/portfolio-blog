@@ -16,7 +16,6 @@ export function DataAnalysis() {
       <div className="space-y-6 sm:space-y-8">
         <div>
           <h3 className="mb-2 sm:mb-3 text-base sm:text-lg font-semibold text-accent">SQL 쿼리 작성 능력</h3>
-          <p className="mb-3 sm:mb-4 text-sm sm:text-base text-stone-400">작업 빈도: 주 수십 건</p>
           <ul className="mb-3 sm:mb-4 space-y-1 text-xs sm:text-sm text-stone-500">
             <li>• 매출 집계: 일/주/월 단위</li>
             <li>• 회원 세그먼트: RFM 분석</li>
