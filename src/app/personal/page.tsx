@@ -94,10 +94,12 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </h3>
           <ul className="space-y-4 sm:space-y-6">
             {[...postManagement].sort((a, b) => {
-              const priorityOrder = { '높음': 0, '중간': 1, '낮음': 2 }
+              const priorityOrder: Record<string, number> = { '높음': 0, '중간': 1, '낮음': 2 }
               const aPriority = a.priority || '낮음'
               const bPriority = b.priority || '낮음'
-              return (priorityOrder[aPriority as keyof typeof priorityOrder] || 2) - (priorityOrder[bPriority as keyof typeof priorityOrder] || 2)
+              const aVal = priorityOrder[aPriority] ?? 2
+              const bVal = priorityOrder[bPriority] ?? 2
+              return aVal - bVal
             }).map((pm, i) => (
               <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
@@ -135,8 +137,10 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </h3>
           <ul className="space-y-4 sm:space-y-6">
             {[...productionConsiderations].sort((a, b) => {
-              const impactOrder = { '높음': 0, '중간': 1, '낮음': 2 }
-              return (impactOrder[a.impact] || 2) - (impactOrder[b.impact] || 2)
+              const impactOrder: Record<string, number> = { '높음': 0, '중간': 1, '낮음': 2 }
+              const aVal = impactOrder[a.impact] ?? 2
+              const bVal = impactOrder[b.impact] ?? 2
+              return aVal - bVal
             }).map((pc, i) => (
               <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
