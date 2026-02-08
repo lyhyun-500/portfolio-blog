@@ -56,8 +56,7 @@ export const differentiators = [
     title: 'SQL 기반 독립적 데이터 분석',
     points: [
       '개발팀 의존 없이 매주 수십 개 쿼리 직접 작성',
-      'Tableau 활용 가능 (실제 대시보드 없어도 가능성 증명)',
-      '기획자 중 상위 5% 스킬셋',
+      'Tableau 활용 가능',
     ],
   },
   {
