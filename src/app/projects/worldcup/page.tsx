@@ -52,7 +52,7 @@ export default function WorldcupPage() {
           </video>
         </div>
 
-        <CaseStudyBlock label="성과 (숫자·임팩트)" accent>
+        <CaseStudyBlock label="성과" accent>
           <ul className="space-y-2">
             <li><strong>평균 체류시간:</strong> 2분 증가</li>
             <li><strong>고정 회원:</strong> 매일 1만명 확보</li>

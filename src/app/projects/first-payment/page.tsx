@@ -46,7 +46,7 @@ export default function FirstPaymentPage() {
           </ul>
         </CaseStudyBlock>
 
-        <CaseStudyBlock label="성과 (숫자·임팩트)" accent>
+        <CaseStudyBlock label="성과" accent>
           <ul className="space-y-2">
             <li><strong>첫 결제율:</strong> 5% → 10% (100% 개선)</li>
             <li><strong>신규 결제 회원:</strong> 월 1.5만명 → 3만명 (2배)</li>

@@ -83,7 +83,7 @@ export default function PgOfferwallPage() {
           </div>
         </CaseStudyBlock>
 
-        <CaseStudyBlock label="성과 (임팩트)" accent>
+        <CaseStudyBlock label="성과" accent>
           <ul className="list-disc pl-5 space-y-2 text-sm text-stone-300">
             <li><strong>PAYPAY 연동:</strong> 사이트 연 매출의 60% 비중 차지</li>
             <li><strong>자동 결제 도입:</strong> 사이트 월 매출의 10% 비중 차지</li>

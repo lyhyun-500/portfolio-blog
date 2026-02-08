@@ -64,7 +64,7 @@ export default function AttendancePage() {
           </div>
         </CaseStudyBlock>
 
-        <CaseStudyBlock label="성과 (임팩트)" accent>
+        <CaseStudyBlock label="성과" accent>
           <ul className="list-disc pl-5 space-y-2 text-sm text-stone-300">
             <li><strong>하루 평균 3만명의 룰렛 고정 회원</strong> 확보</li>
             <li>회원 체류시간 증가</li>

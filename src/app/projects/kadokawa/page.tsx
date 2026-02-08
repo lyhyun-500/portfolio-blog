@@ -100,7 +100,7 @@ export default function KadokawaPage() {
           </div>
         </CaseStudyBlock>
 
-        <CaseStudyBlock label="성과 (임팩트)" accent>
+        <CaseStudyBlock label="성과" accent>
           <ul className="list-disc pl-5 space-y-2 text-sm text-stone-300">
             <li>미디어두 업체의 API 연동 선행과제인 <strong>카도카와 기준 충족</strong> 달성</li>
             <li><strong>소설·사진집에 대한 출판 계약 확보</strong>에 기여</li>

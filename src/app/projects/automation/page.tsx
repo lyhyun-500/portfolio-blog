@@ -47,7 +47,7 @@ export default function AutomationPage() {
           </ul>
         </CaseStudyBlock>
 
-        <CaseStudyBlock label="결과 (숫자·임팩트)" accent>
+        <CaseStudyBlock label="결과" accent>
           <ul className="space-y-2">
             <li><strong>업로드 시간:</strong> 2달 → 스크립트 실행 2시간 (96% 단축)</li>
             <li><strong>오류율:</strong> 거의 0%, 수정 작업 90% 감소</li>
