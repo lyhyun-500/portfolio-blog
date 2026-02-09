@@ -15,6 +15,16 @@ export default function AdminAuthPage() {
     // 환경 변수에서 관리자 비밀번호 가져오기 (클라이언트에서는 NEXT_PUBLIC_ 접두사 필요)
     const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123' // 기본값 (개발용)
 
+    // 디버깅용 (개발 환경에서만)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('환경 변수 확인:', {
+        hasEnvVar: !!process.env.NEXT_PUBLIC_ADMIN_PASSWORD,
+        envValue: process.env.NEXT_PUBLIC_ADMIN_PASSWORD,
+        expectedPassword: adminPassword,
+        inputPassword: password
+      })
+    }
+
     if (password === adminPassword) {
       // 인증 성공 - 세션 스토리지에 토큰 저장
       const token = btoa(`admin_${Date.now()}`)
@@ -22,7 +32,11 @@ export default function AdminAuthPage() {
       sessionStorage.setItem('admin_authenticated', 'true')
       router.push('/admin')
     } else {
-      setError('비밀번호가 올바르지 않습니다.')
+      // 프로덕션에서는 보안상 상세 정보 숨김
+      const errorMsg = process.env.NODE_ENV === 'development'
+        ? `비밀번호가 올바르지 않습니다. (입력: ${password}, 기대값: ${adminPassword})`
+        : '비밀번호가 올바르지 않습니다.'
+      setError(errorMsg)
     }
   }
 
