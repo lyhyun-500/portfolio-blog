@@ -1,13 +1,96 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import { personalProjects } from '@/lib/personal-project-data'
 
-export const metadata = {
-  title: '개인 프로젝트',
-  description: '개인 프로젝트 설계와 고민 정리',
+function ImageModal({ imagePath, label, description, isOpen, onClose }: { imagePath: string; label: string; description?: string; isOpen: boolean; onClose: () => void }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+    if (isOpen) {
+      window.addEventListener('keydown', handleEscape)
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-7xl max-h-[90vh] w-full h-full flex flex-col animate-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 닫기 버튼 */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 rounded-full bg-stone-900/80 hover:bg-stone-800 p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
+          aria-label="닫기"
+        >
+          <svg
+            className="w-6 h-6 text-stone-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        {/* 이미지 */}
+        <div className="relative flex-1 flex items-center justify-center min-h-0">
+          <Image
+            src={imagePath}
+            alt={label}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1400px"
+            loading="eager"
+            quality={90}
+          />
+        </div>
+
+        {/* 이미지 정보 */}
+        <div className="mt-4 text-center shrink-0">
+          <h3 className="text-lg font-semibold text-stone-100 mb-1">{label}</h3>
+          {description && (
+            <p className="text-sm text-stone-400">{description}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
-  const { title, status, intro, design, implementations, considerations, postManagement, productionConsiderations, adminLink } = project
+  const { title, status, intro, design, implementations, considerations, postManagement, productionConsiderations, adminLink, screenshots } = project
+  const [selectedImage, setSelectedImage] = useState<{ imagePath: string; label: string; description?: string } | null>(null)
 
   return (
     <div className="mb-12 sm:mb-16">
@@ -38,6 +121,63 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </div>
         )}
       </div>
+
+      {/* 스크린샷 */}
+      {screenshots && screenshots.length > 0 && (
+        <section className="mb-8 sm:mb-12">
+          <h3 className="text-lg sm:text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2 mb-4 sm:mb-6">
+            화면 구성
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {screenshots.map((screenshot, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-stone-800 bg-stone-900/30 overflow-hidden cursor-pointer hover:border-accent/50 transition-colors group"
+                onClick={() => setSelectedImage(screenshot)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setSelectedImage(screenshot)
+                  }
+                }}
+                aria-label={`${screenshot.label} 확대 보기`}
+              >
+                <div className="relative aspect-video bg-stone-950 overflow-hidden">
+                  <Image
+                    src={screenshot.imagePath}
+                    alt={screenshot.label}
+                    fill
+                    className="object-contain transition-transform group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-3 sm:p-4">
+                  <h4 className="text-sm sm:text-base font-medium text-accent mb-1">
+                    {screenshot.label}
+                  </h4>
+                  {screenshot.description && (
+                    <p className="text-xs sm:text-sm text-stone-400">
+                      {screenshot.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          {selectedImage && (
+            <ImageModal
+              imagePath={selectedImage.imagePath}
+              label={selectedImage.label}
+              description={selectedImage.description}
+              isOpen={!!selectedImage}
+              onClose={() => setSelectedImage(null)}
+            />
+          )}
+        </section>
+      )}
 
       {/* 설계 */}
       {design && design.length > 0 && (

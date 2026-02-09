@@ -48,8 +48,18 @@ export function AutoLineBreak() {
       
       const text = textNode.textContent || ''
       // 숫자 뒤의 마침표는 제외 (예: 3.14, 2024.01)
+      // 마침표 뒤에 따옴표(")가 오는 경우는 제외 (예: "데이터는 거짓말하지 않는다 — 수치로 설득.")
       // 이미 줄바꿈이 있는 경우는 제외
-      const processed = text.replace(/([^0-9\n])\.(\s*)(?!\n)/g, '$1.\n$2')
+      const processed = text.replace(/([^0-9\n])\.(\s*)(?!\n)/g, (match, p1, p2, offset, string) => {
+        // 마침표 뒤에 따옴표가 오는지 확인
+        const afterPeriod = string.slice(offset + match.length)
+        const trimmedAfter = afterPeriod.trim()
+        // 따옴표(") 또는 닫는 따옴표(")가 바로 오는 경우 줄바꿈 추가하지 않음
+        if (trimmedAfter.startsWith('"') || trimmedAfter.startsWith('"')) {
+          return match
+        }
+        return `${p1}.\n${p2}`
+      })
       
       if (processed !== text && textNode.parentNode) {
         processedNodes.add(textNode)

@@ -30,6 +30,12 @@ export interface ProductionConsiderationItem {
   impact: '높음' | '중간' | '낮음'
 }
 
+export interface ScreenshotItem {
+  label: string
+  imagePath: string
+  description?: string
+}
+
 export interface PersonalProject {
   id: string
   title: string
@@ -41,6 +47,7 @@ export interface PersonalProject {
   postManagement?: PostManagementItem[]
   productionConsiderations?: ProductionConsiderationItem[]
   adminLink?: string
+  screenshots?: ScreenshotItem[]
 }
 
 export const personalProjects: PersonalProject[] = [
@@ -50,6 +57,23 @@ export const personalProjects: PersonalProject[] = [
     status: '구현 완료',
     intro: '포트폴리오 블로그에 적용한 모듈 레이아웃 시스템입니다. 실제로 작동하는 시스템으로 구현되었습니다.',
     adminLink: '/admin',
+    screenshots: [
+      {
+        label: '메인 화면',
+        imagePath: '/screenshots/modular-system/main.png',
+        description: '기본 메인 페이지 레이아웃',
+      },
+      {
+        label: '어드민 화면',
+        imagePath: '/screenshots/modular-system/admin.png',
+        description: '모듈 순서 및 표시/숨김 관리 인터페이스',
+      },
+      {
+        label: '변경 적용',
+        imagePath: '/screenshots/modular-system/applied.png',
+        description: '어드민에서 변경한 설정이 적용된 메인 페이지',
+      },
+    ],
     design: [
     {
       title: 'Modular Page Layout System',
