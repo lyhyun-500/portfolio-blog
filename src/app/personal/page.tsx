@@ -93,24 +93,15 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
   const [selectedImage, setSelectedImage] = useState<{ imagePath: string; label: string; description?: string } | null>(null)
 
   return (
-    <div className="mb-12 sm:mb-16">
+    <div>
       {/* 프로젝트 헤더 */}
-      <div className="mb-8 sm:mb-10 pb-6 border-b border-stone-800">
+      <div className="mb-8 sm:mb-10 pb-6 border-b border-stone-700">
         <div className="flex items-start justify-between gap-3 mb-3">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-stone-100">
             {title}
           </h2>
-          <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-            status === '구현 완료' 
-              ? 'bg-accent/20 text-accent' 
-              : status === '진행 중'
-                ? 'bg-yellow-900/30 text-yellow-400 border border-yellow-800'
-                : 'bg-stone-700 text-stone-400'
-          }`}>
-            {status}
-          </span>
         </div>
-        <p className="text-sm sm:text-base text-stone-400 leading-relaxed mb-3">
+        <p className="text-sm sm:text-base text-stone-300 leading-relaxed mb-3">
           {intro}
         </p>
         {adminLink && (
@@ -187,9 +178,9 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </h3>
           <ul className="space-y-4 sm:space-y-6">
             {design.map((d, i) => (
-              <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
+              <li key={i} className="rounded-xl border border-stone-700 bg-stone-800/30 p-4 sm:p-5">
                 <h4 className="text-sm sm:text-base font-medium text-accent">{d.title}</h4>
-                <p className="mt-2 text-xs sm:text-sm text-stone-400 leading-relaxed">{d.content}</p>
+                <p className="mt-2 text-xs sm:text-sm text-stone-300 leading-relaxed whitespace-pre-line">{d.content}</p>
               </li>
             ))}
           </ul>
@@ -204,11 +195,11 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </h3>
           <ul className="space-y-3 sm:space-y-4">
             {implementations.map((impl, i) => (
-              <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
+              <li key={i} className="rounded-xl border border-stone-700 bg-stone-800/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <h4 className="text-sm sm:text-base font-medium text-stone-200">{impl.feature}</h4>
-                    <p className="mt-1 text-xs sm:text-sm text-stone-400 leading-relaxed">{impl.description}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-stone-300 leading-relaxed whitespace-pre-line">{impl.description}</p>
                   </div>
                   <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
                     impl.status === '완료'
@@ -220,6 +211,30 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
                     {impl.status}
                   </span>
                 </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* 고민·선택지 */}
+      {considerations && considerations.length > 0 && (
+        <section className="mb-8 sm:mb-12">
+          <h3 className="text-lg sm:text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2 mb-4 sm:mb-6">
+            고민 · 선택지
+          </h3>
+          <ul className="space-y-4 sm:space-y-6">
+            {considerations.map((c, i) => (
+              <li key={i} className="rounded-xl border border-stone-700 bg-stone-800/30 p-4 sm:p-5">
+                <p className="text-sm sm:text-base font-medium text-stone-200">{c.question}</p>
+                {c.options && c.options.length > 0 && (
+                  <ul className="mt-2 list-disc pl-5 text-stone-300 text-xs sm:text-sm space-y-1">
+                    {c.options.map((o, j) => (
+                      <li key={j}>{o}</li>
+                    ))}
+                  </ul>
+                )}
+                {c.note && <p className="mt-2 text-xs sm:text-sm text-stone-400 whitespace-pre-line">{c.note}</p>}
               </li>
             ))}
           </ul>
@@ -241,7 +256,7 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
               const bVal = priorityOrder[bPriority] ?? 2
               return aVal - bVal
             }).map((pm, i) => (
-              <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
+              <li key={i} className="rounded-xl border border-stone-700 bg-stone-800/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-sm sm:text-base font-medium text-accent">{pm.category}</h3>
                   {pm.priority && (
@@ -257,7 +272,7 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
                   )}
                 </div>
                 {pm.items && pm.items.length > 0 && (
-                  <ul className="mt-2 list-disc pl-5 text-stone-400 text-xs sm:text-sm space-y-1.5">
+                  <ul className="mt-2 list-disc pl-5 text-stone-300 text-xs sm:text-sm space-y-1.5">
                     {pm.items.map((item, j) => (
                       <li key={j} className="leading-relaxed">{item}</li>
                     ))}
@@ -271,7 +286,7 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
 
       {/* 실서비스 적용 시 고려사항 */}
       {productionConsiderations && productionConsiderations.length > 0 && (
-        <section className="mb-8 sm:mb-12">
+        <section>
           <h3 className="text-lg sm:text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2 mb-4 sm:mb-6">
             실서비스 적용 시 고려사항
           </h3>
@@ -282,7 +297,7 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
               const bVal = impactOrder[b.impact] ?? 2
               return aVal - bVal
             }).map((pc, i) => (
-              <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
+              <li key={i} className="rounded-xl border border-stone-700 bg-stone-800/30 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-sm sm:text-base font-semibold text-stone-200">{pc.title}</h3>
                   <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
@@ -295,9 +310,9 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
                     영향도: {pc.impact}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-stone-400 mb-3 leading-relaxed">{pc.description}</p>
+                <p className="text-xs sm:text-sm text-stone-300 mb-3 leading-relaxed whitespace-pre-line">{pc.description}</p>
                 {pc.considerations && pc.considerations.length > 0 && (
-                  <ul className="mt-3 list-disc pl-5 text-stone-400 text-xs sm:text-sm space-y-1.5">
+                  <ul className="mt-3 list-disc pl-5 text-stone-300 text-xs sm:text-sm space-y-1.5">
                     {pc.considerations.map((consideration, j) => (
                       <li key={j} className="leading-relaxed">{consideration}</li>
                     ))}
@@ -308,37 +323,16 @@ function ProjectSection({ project }: { project: typeof personalProjects[0] }) {
           </ul>
         </section>
       )}
-
-      {/* 고민·선택지 */}
-      {considerations && considerations.length > 0 && (
-        <section>
-          <h3 className="text-lg sm:text-xl font-semibold text-stone-100 border-b border-stone-700 pb-2 mb-4 sm:mb-6">
-            고민 · 선택지
-          </h3>
-          <ul className="space-y-4 sm:space-y-6">
-            {considerations.map((c, i) => (
-              <li key={i} className="rounded-xl border border-stone-800 bg-stone-900/30 p-4 sm:p-5">
-                <p className="text-sm sm:text-base font-medium text-stone-200">{c.question}</p>
-                {c.options && c.options.length > 0 && (
-                  <ul className="mt-2 list-disc pl-5 text-stone-400 text-xs sm:text-sm space-y-1">
-                    {c.options.map((o, j) => (
-                      <li key={j}>{o}</li>
-                    ))}
-                  </ul>
-                )}
-                {c.note && <p className="mt-2 text-xs sm:text-sm text-stone-500">{c.note}</p>}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
     </div>
   )
 }
 
 export default function PersonalPage() {
+  const [selectedProjectId, setSelectedProjectId] = useState<string>(personalProjects[0]?.id || '')
+  const selectedProject = personalProjects.find(p => p.id === selectedProjectId) || personalProjects[0]
+
   return (
-    <div className="mx-auto max-w-3xl px-3 py-8 sm:px-4 sm:py-12 md:px-6 md:py-16">
+    <div className="mx-auto max-w-5xl px-3 py-8 sm:px-4 sm:py-12 md:px-6 md:py-16" data-personal-project>
       <Link href="/" className="mb-6 sm:mb-8 inline-block text-xs sm:text-sm text-stone-500 hover:text-accent">
         ← 홈
       </Link>
@@ -352,11 +346,39 @@ export default function PersonalPage() {
         </p>
       </header>
 
-      {/* 프로젝트 목록 */}
-      <div className="space-y-12 sm:space-y-16">
-        {personalProjects.map((project) => (
-          <ProjectSection key={project.id} project={project} />
-        ))}
+      {/* 프로젝트 선택 탭 */}
+      <div className="mb-8 sm:mb-10 overflow-x-auto">
+        <div className="flex gap-2 sm:gap-3 border-b border-stone-800 min-w-max">
+          {personalProjects.map((project) => (
+            <button
+              key={project.id}
+              onClick={() => setSelectedProjectId(project.id)}
+              className={`px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors whitespace-nowrap border-b-2 ${
+                selectedProjectId === project.id
+                  ? 'border-accent text-accent'
+                  : 'border-transparent text-stone-400 hover:text-stone-300 hover:border-stone-700'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span>{project.title}</span>
+                <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${
+                  project.status === '구현 완료' 
+                    ? 'bg-accent/20 text-accent' 
+                    : project.status === '진행 중'
+                      ? 'bg-yellow-900/30 text-yellow-400'
+                      : 'bg-stone-700 text-stone-400'
+                }`}>
+                  {project.status}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 선택된 프로젝트 상세 */}
+      <div className="rounded-2xl sm:rounded-3xl border border-stone-800 bg-stone-900/50 p-6 sm:p-8 md:p-10">
+        <ProjectSection project={selectedProject} />
       </div>
     </div>
   )

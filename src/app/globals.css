@@ -27,6 +27,7 @@ html {
 
 body {
   @apply bg-[#0f0f11] text-stone-100 antialiased;
+  word-break: keep-all; /* 한글 단어 중간 줄바꿈 방지 */
 }
 
 @layer utilities {
@@ -54,6 +55,7 @@ a.anchor {
 .case-study-content,
 .prose-custom {
   white-space: pre-line;
+  word-break: keep-all; /* 한글 단어 중간 줄바꿈 방지 */
 }
 .prose-custom ul, .prose-custom ol {
   @apply mb-3 sm:mb-4 pl-5 sm:pl-6 text-sm sm:text-base text-stone-300;

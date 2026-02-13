@@ -31,7 +31,7 @@ export function Differentiators() {
               {d.points.map((p, j) => (
                 <li key={j} className="flex items-start gap-2">
                   <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-stone-500" />
-                  <span>{p}</span>
+                  <span style={{ wordBreak: 'keep-all' }}>{p}</span>
                 </li>
               ))}
             </ul>

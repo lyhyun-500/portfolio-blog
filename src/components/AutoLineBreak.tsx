@@ -9,6 +9,14 @@ import { useEffect } from 'react'
 export function AutoLineBreak() {
   useEffect(() => {
     const processedNodes = new WeakSet<Text>()
+    let isProcessing = false
+    
+    // 초기 처리 시작 전에 콘텐츠 숨기기
+    const mainContent = document.querySelector('main')
+    if (mainContent) {
+      mainContent.style.visibility = 'hidden'
+      isProcessing = true
+    }
     
     const hasLineBreakAfterPeriod = (textNode: Text): boolean => {
       // 마침표 뒤에 이미 <br> 태그가 있는지 확인
@@ -99,6 +107,7 @@ export function AutoLineBreak() {
             if (['code', 'pre', 'script', 'style', 'noscript'].includes(parentTagName)) {
               return NodeFilter.FILTER_REJECT
             }
+            
             // 이미 처리된 노드는 제외
             if (processedNodes.has(node as Text)) {
               return NodeFilter.FILTER_REJECT
@@ -120,7 +129,7 @@ export function AutoLineBreak() {
     }
 
     // 배치 처리 함수 (한 번에 최대 50개 노드 처리)
-    const processBatch = (textNodes: Text[], startIndex: number = 0) => {
+    const processBatch = (textNodes: Text[], startIndex: number = 0, isInitial: boolean = false, onComplete?: () => void) => {
       const batchSize = 50
       const endIndex = Math.min(startIndex + batchSize, textNodes.length)
       
@@ -130,11 +139,21 @@ export function AutoLineBreak() {
       }
       
       if (endIndex < textNodes.length) {
-        // 다음 배치를 requestIdleCallback으로 처리
-        if (typeof requestIdleCallback !== 'undefined') {
-          requestIdleCallback(() => processBatch(textNodes, endIndex), { timeout: 1000 })
+        // 초기 로딩 시에는 더 빠르게 처리 (깜빡임 방지)
+        if (isInitial) {
+          requestAnimationFrame(() => processBatch(textNodes, endIndex, true, onComplete))
         } else {
-          setTimeout(() => processBatch(textNodes, endIndex), 0)
+          // 다음 배치를 requestIdleCallback으로 처리
+          if (typeof requestIdleCallback !== 'undefined') {
+            requestIdleCallback(() => processBatch(textNodes, endIndex, false, onComplete), { timeout: 1000 })
+          } else {
+            setTimeout(() => processBatch(textNodes, endIndex, false, onComplete), 0)
+          }
+        }
+      } else {
+        // 모든 배치 처리 완료
+        if (onComplete) {
+          onComplete()
         }
       }
     }
@@ -142,14 +161,30 @@ export function AutoLineBreak() {
     // 초기 처리
     const processAll = () => {
       const mainContent = document.querySelector('main')
-      if (!mainContent) return
+      if (!mainContent) {
+        isProcessing = false
+        return
+      }
       
       const textNodes = processElement(mainContent)
       if (textNodes.length > 0) {
-        if (typeof requestIdleCallback !== 'undefined') {
-          requestIdleCallback(() => processBatch(textNodes), { timeout: 2000 })
-        } else {
-          setTimeout(() => processBatch(textNodes), 100)
+        // 초기 로딩 시에는 즉시 처리 (깜빡임 방지)
+        const showContent = () => {
+          if (isProcessing) {
+            mainContent.style.visibility = 'visible'
+            isProcessing = false
+          }
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            processBatch(textNodes, 0, true, showContent)
+          })
+        })
+      } else {
+        // 처리할 텍스트가 없으면 즉시 표시
+        if (isProcessing) {
+          mainContent.style.visibility = 'visible'
+          isProcessing = false
         }
       }
     }
@@ -193,17 +228,15 @@ export function AutoLineBreak() {
         })
         
         if (textNodes.length > 0) {
-          if (typeof requestIdleCallback !== 'undefined') {
-            requestIdleCallback(() => processBatch(textNodes), { timeout: 1000 })
-          } else {
-            setTimeout(() => processBatch(textNodes), 0)
-          }
+          // 동적 콘텐츠는 즉시 처리 (탭 전환 등)
+          requestAnimationFrame(() => processBatch(textNodes, 0, false))
         }
-      }, 300) // 300ms debounce
+      }, 100) // 100ms debounce (더 빠른 반응)
     })
 
-    // 초기 처리 지연
-    const timer = setTimeout(() => {
+    // 초기 처리: 즉시 실행 (지연 없음)
+    // requestAnimationFrame을 사용하여 렌더링 후 처리
+    const initTimer = requestAnimationFrame(() => {
       processAll()
       
       // main 요소 관찰 시작
@@ -215,14 +248,29 @@ export function AutoLineBreak() {
           characterData: false
         })
       }
-    }, 200)
+    })
+    
+    // 타임아웃 안전장치: 1초 후에는 무조건 표시
+    const safetyTimer = setTimeout(() => {
+      const mainContent = document.querySelector('main')
+      if (mainContent && isProcessing) {
+        mainContent.style.visibility = 'visible'
+        isProcessing = false
+      }
+    }, 1000)
 
     return () => {
-      clearTimeout(timer)
+      cancelAnimationFrame(initTimer)
+      clearTimeout(safetyTimer)
       if (mutationTimeout) {
         clearTimeout(mutationTimeout)
       }
       observer.disconnect()
+      // cleanup 시 visibility 복원
+      const mainContent = document.querySelector('main')
+      if (mainContent) {
+        mainContent.style.visibility = 'visible'
+      }
     }
   }, [])
 

@@ -228,6 +228,174 @@ export const personalProjects: PersonalProject[] = [
     },
   ] as ProductionConsiderationItem[],
   },
+  {
+    id: 'mailcraft',
+    title: 'MailCraft - AI 이메일 어시스턴트 크롬 확장프로그램',
+    status: '진행 중',
+    intro: 'Gmail에서 이메일을 요약하고, 완벽한 답장을 자동으로 생성하는 PM/기획자 특화 도구. 하루 30분을 아끼는 AI 어시스턴트.',
+    design: [
+      {
+        title: 'MailCraft',
+        content: `Gmail 사이드바에서 작동하는 AI 어시스턴트. 이메일을 열면 자동으로 요약하고, 클릭 한 번으로 답장 초안을 생성합니다. 사용자는 Gmail을 떠나지 않고 모든 것을 처리합니다.`,
+      },
+      {
+        title: '핵심 문제 해결',
+        content: `PM/기획자/마케터는 하루 업무 시간의 상당 부분을 이메일에 쓰고 있습니다. 긴 스레드 읽기(15~20분), 답장 작성 고민(10분), 컨텍스트 스위칭 등으로 인해 비효율이 발생합니다. MailCraft는 이러한 문제를 해결하여 하루 30~60분을 절약할 수 있도록 도와줍니다.`,
+      },
+    ] as DesignItem[],
+    implementations: [
+      {
+        feature: '스마트 요약 (Smart Summary)',
+        description: '이메일/스레드를 열면 사이드바에 3줄 요약이 자동 표시. 핵심 결정사항, 액션 아이템, 마감일을 추출',
+        status: '완료',
+      },
+      {
+        feature: '답장 초안 생성 (Smart Reply)',
+        description: '받은 이메일의 맥락과 톤을 파악하여 답장 초안 3개를 생성. PM 특화 톤: 협업적, 구조적, 액션 중심',
+        status: '진행 중',
+      },
+      {
+        feature: 'Gmail 사이드바 UI',
+        description: 'Gmail을 떠나지 않고 모든 인터랙션이 사이드바 내에서 완결되는 UX',
+        status: '완료',
+      },
+      {
+        feature: '사용량 제한 시스템',
+        description: '무료 티어: 요약 5회/일, 답장 3회/일. 사용량 추적 및 제한 로직 구현',
+        status: '완료',
+      },
+      {
+        feature: '비용 최적화',
+        description: '이메일 본문 1000자 제한, 응답 토큰 300으로 제한, 클라이언트 사이드 캐싱으로 중복 API 호출 방지',
+        status: '완료',
+      },
+      {
+        feature: '플로팅 버튼',
+        description: '사이드바 닫기 후에도 플로팅 버튼으로 다시 열 수 있는 기능',
+        status: '완료',
+      },
+    ] as ImplementationItem[],
+    considerations: [
+      {
+        question: '문제점: PM/기획자의 이메일 처리 비효율',
+        options: [
+          '긴 스레드 읽기에 평균 15~20분 소요',
+          '답장 작성 고민에 평균 10분 소요',
+          '이메일 처리에 하루 평균 2.5시간 소비 (28% of 업무시간)',
+        ],
+        note: '✅ 해결: AI 요약 및 답장 초안 생성으로 하루 30~60분 절약 가능',
+      },
+      {
+        question: '목표: PM 특화 AI 이메일 어시스턴트',
+        options: [
+          'Gmail 사이드바에서 모든 기능 제공',
+          '요약 정확도 만족도 > 4.0/5.0',
+          '답장 초안 채택률 > 40%',
+          '주간 활성 사용자(WAU) 중 답장 기능 사용자 비율 40% 이상',
+        ],
+      },
+      {
+        question: '왜 중요한가?',
+        options: [
+          'PM의 핵심 업무인 커뮤니케이션 효율화',
+          '이메일 처리 시간 30% 절감으로 핵심 업무에 집중 가능',
+          'PM 특화 톤/템플릿으로 답장 품질 향상',
+        ],
+      },
+      {
+        question: '기술적 고려사항',
+        options: [
+          'Gmail UI 변경에 대응하기 위한 MutationObserver 활용',
+          'AI API 비용 통제를 위한 캐싱 및 사용량 제한',
+          'Chrome Web Store 심사를 위한 권한 최소화',
+        ],
+      },
+    ] as ConsiderationItem[],
+    postManagement: [
+      {
+        category: '사용자 확보',
+        priority: '높음',
+        items: [
+          'Product Hunt 런칭으로 초기 사용자 확보',
+          'PM 커뮤니티(슬랙, 디스코드)에서 공유',
+          '무료 티어로 사용자 습관 형성 유도',
+        ],
+      },
+      {
+        category: '유료 전환',
+        priority: '높음',
+        items: [
+          '무료 티어 사용량 제한으로 자연스러운 업그레이드 유도',
+          'Pro 플랜($9/월) 가격 전략으로 수익화',
+          'Team 플랜($19/인/월)으로 B2B 확장',
+        ],
+      },
+      {
+        category: '성공 지표 추적',
+        priority: '높음',
+        items: [
+          'DAU, WAU 추적',
+          'Activation Rate (설치 후 7일 이내 기능 사용 비율)',
+          '요약 사용률, 답장 채택률 측정',
+          'MRR, NPS 추적',
+        ],
+      },
+      {
+        category: '기능 확장',
+        priority: '중간',
+        items: [
+          '톤 변환 기능 (v1.1)',
+          '영한/한영 번역 후 톤 조정 (v1.2)',
+          '스레드 타임라인 요약 (v1.3)',
+          '팀 공유 템플릿 (v2.0)',
+        ],
+      },
+    ] as PostManagementItem[],
+    productionConsiderations: [
+      {
+        title: 'AI API 비용 관리',
+        description: 'Claude API 사용량에 따른 비용을 효과적으로 관리해야 합니다.',
+        impact: '높음',
+        considerations: [
+          'Haiku 모델 사용으로 비용 최적화 (월 $5~15 예상)',
+          '이메일 본문 1000자 제한으로 입력 토큰 절감',
+          '응답 토큰 300으로 제한하여 출력 비용 절감',
+          '클라이언트 사이드 캐싱으로 동일 이메일 재요약 방지',
+          '사용량 제한으로 무료 티어 비용 통제',
+        ],
+      },
+      {
+        title: 'Gmail UI 변경 대응',
+        description: 'Gmail의 DOM 구조 변경에 대응할 수 있는 유연한 구조가 필요합니다.',
+        impact: '높음',
+        considerations: [
+          'DOM 셀렉터를 최소한으로 사용',
+          'MutationObserver로 DOM 변경 감지',
+          'Gmail 업데이트 시 빠른 대응을 위한 모니터링 체계',
+        ],
+      },
+      {
+        title: 'Chrome Web Store 심사',
+        description: 'Chrome Web Store 심사를 통과하기 위한 준비가 필요합니다.',
+        impact: '중간',
+        considerations: [
+          '권한 최소화 (필요한 권한만 요청)',
+          '개인정보처리방침 준비',
+          '심사 가이드 사전 확인 및 준수',
+        ],
+      },
+      {
+        title: '확장성 고려사항',
+        description: '대규모 사용자 확보 시 인프라 및 비용 관리',
+        impact: '중간',
+        considerations: [
+          'Supabase 무료 티어로 시작, 유료 전환 시점 계획',
+          'Stripe 결제 시스템 연동 준비',
+          'Mixpanel 무료 티어로 분석 시작',
+        ],
+      },
+    ] as ProductionConsiderationItem[],
+  },
 ]
 
 // 하위 호환성을 위한 기본 export (첫 번째 프로젝트)
